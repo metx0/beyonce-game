@@ -99,5 +99,5 @@ function movePlayer(event) {
 window.addEventListener('keydown', movePlayer)
 
 window.addEventListener('load', () => {
-    gameLoop()
+    // gameLoop()
 })
