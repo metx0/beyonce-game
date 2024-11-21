@@ -14,11 +14,14 @@
     </head>
     <body>
         <nav class="navbar navbar-light shadow px-3 py-2 w-100">
-            <div class="container-fluid d-flex justify-content-between">
+            <div class="container-fluid d-flex justify-content-between align-items-center">
                 <h3 class="m-0" id="game-title">Escape from Beyonce</h3>
-                <button class="btn btn-primary" id="settings-btn">
-                    Settings
-                </button>
+                <div class="d-flex align-items-center gap-5">
+                    <p class="mb-0 fw-semibold">Go to settings to pause the game</p>
+                    <button class="btn btn-primary" id="settings-btn">
+                        Settings
+                    </button>
+                </div>
             </div>
         </nav>
         <main class="main">
@@ -51,6 +54,7 @@
                     </div>
                     <div class="modal-body d-flex flex-column gap-3">
                         <!-- Components to change the settings -->
+                        <!-- Dark mode -->
                         <div class="form-check form-switch">
                             <input
                                 class="form-check-input"
@@ -63,11 +67,26 @@
                                 >Enable dark mode</label
                             >
                         </div>
+                        <!-- Allow music -->
+                        <div class="form-check form-switch">
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                id="allow-music-switch"
+                                checked
+                            />
+                            <label
+                                class="form-check-label"
+                                for="allow-music-switch"
+                                >Allow music</label
+                            >
+                        </div>
+                        <!-- Change difficulty -->
                         <div class="container-select-difficulty">
-                            <span >Change difficulty</span>
+                            <span>Change difficulty</span>
                             <select
                                 id="difficulty-select"
-                                class="form-select "
+                                class="form-select"
                                 aria-label="Default select example"
                             >
                                 <option value="easy">Easy</option>

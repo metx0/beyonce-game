@@ -18,14 +18,20 @@ const playerSpeed = 50
 let beyonceSpeed = 1
 // This is used to pause the game and resume it
 let isPlaying = true
+let userInteracted = false
+let musicAllowed = true
+
+export function setMusicAllowed(allowed) {
+    musicAllowed = allowed
+}
 
 export function setGameState(playing) {
     isPlaying = playing
 
-    if (!isPlaying) {
-        audio.pause()
-    } else {
+    if (isPlaying && userInteracted && musicAllowed) {
         audio.play()
+    } else {
+        audio.pause()
     }
 }
 
@@ -114,8 +120,17 @@ function movePlayer(event) {
 window.addEventListener('keydown', movePlayer)
 
 // Wait for user interaction to play the audio and start the game 
-function handleFirstInteraction() {
-    audio.play()
+function handleFirstInteraction(event) {
+    // Only start if the user press a key of the game controls
+    
+    const controls = ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight']
+    if (!controls.includes(event.key)) {
+        return
+    }
+
+    userInteracted = true
+
+    if (musicAllowed) audio.play()
     // Start game
     gameLoop()
 

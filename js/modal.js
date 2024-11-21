@@ -1,4 +1,4 @@
-import { setBeyonceSpeed, setGameState } from './app.js'
+import { setBeyonceSpeed, setGameState, setMusicAllowed,  } from './app.js'
 
 // We will show all the settings in a modal 
 
@@ -52,6 +52,10 @@ function handleAccept() {
     // Difficulty
     let newSpeed = changeDifficulty(difficultySelector.value)
     setBeyonceSpeed(newSpeed)
+
+    // Allow music or not 
+    let allowMusic = document.getElementById('allow-music-switch').checked
+    setMusicAllowed(allowMusic)
 
     modal.hide()
     // Resume game 
