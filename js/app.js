@@ -14,7 +14,17 @@ let beyoncePosition = {
 }
 
 const playerSpeed = 50
-const beyonceSpeed = 1
+let beyonceSpeed = 1
+// This is used to pause the game and resume it
+let isPlaying = true
+
+export function setGameState(playing) {
+    isPlaying = playing
+}
+
+export function setBeyonceSpeed(newSpeed) {
+    beyonceSpeed = newSpeed
+}
 
 function restartPosition() {
     playerPosition.x = 0
@@ -34,7 +44,7 @@ function detectCollision() {
     const deltaY = Math.abs(playerPosition.y - beyoncePosition.y)
 
     if (deltaX <= 50 && deltaY <= 50) {
-        alert('Perdiste')
+        alert('You lost')
         restartPosition()
 
         /* if (confirm('Beyonce te atrapó. Rápido, dale las gracias para salvarte!!')) {
@@ -53,9 +63,15 @@ function detectCollision() {
 // Al inicio, cuando no se ha presionado una tecla, el juego está estático
 
 function gameLoop() {
-    moveBeyonce() 
-    updatePosition()
-    detectCollision()
+    if (isPlaying) {
+        moveBeyonce() 
+        updatePosition()
+        detectCollision()
+    }
+
+    // moveBeyonce() 
+    // updatePosition()
+    // detectCollision()
     requestAnimationFrame(gameLoop)
 }
 

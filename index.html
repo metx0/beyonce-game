@@ -66,6 +66,7 @@
                         <div class="container-select-difficulty">
                             <span >Change difficulty</span>
                             <select
+                                id="difficulty-select"
                                 class="form-select "
                                 aria-label="Default select example"
                             >
@@ -77,6 +78,7 @@
                     </div>
                     <div class="modal-footer">
                         <button
+                            id="close-modal-btn"
                             type="button"
                             class="btn btn-secondary"
                             data-bs-dismiss="modal"
@@ -86,7 +88,7 @@
                         <button
                             type="button"
                             class="btn btn-primary"
-                            id="accept-btn"
+                            id="accept-modal-btn"
                         >
                             Accept
                         </button>
@@ -101,7 +103,7 @@
             integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
             crossorigin="anonymous"
         ></script>
-        <script src="js/app.js"></script>
-        <script src="js/modal.js"></script>
+        <script src="js/app.js" type="module"></script>
+        <script src="js/modal.js" type="module"></script>
     </body>
 </html>

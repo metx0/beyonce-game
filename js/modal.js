@@ -1,10 +1,12 @@
+import { setBeyonceSpeed, setGameState } from './app.js'
+
 // We will show all the settings in a modal 
 
 const modal = new bootstrap.Modal(document.getElementById('modal'))
 const modalContent = document.querySelector('.modal-content')
 const settingsBtn = document.getElementById('settings-btn')
-const acceptBtn = document.getElementById('accept-btn')
 const navbar = document.querySelector('.navbar')
+const difficultySelector = document.getElementById('difficulty-select')
 const body = document.body
 
 const originalBodyBackground = '#f0f8ff'
@@ -30,15 +32,45 @@ function restoreLightMode() {
     modalContent.classList.remove('bg-dark', 'text-light')
 }
 
+function changeDifficulty(value) {
+    const difficultyMap = {
+        'easy': 0.5,
+        'normal': 1,
+        'hard': 2
+    }
+
+    // If value doesn't exist as a key in the object, return a string
+    return difficultyMap[value] ?? 'Invalid value'
+}
+
 // Retrive values and apply settings
 function handleAccept() {
+    // Dark mode
     const darkModeSwitch = document.getElementById('dark-mode-switch')
     darkModeSwitch.checked ? enableDarkMode() : restoreLightMode()
+
+    // Difficulty
+    let newSpeed = changeDifficulty(difficultySelector.value)
+    setBeyonceSpeed(newSpeed)
+
     modal.hide()
+    // Resume game 
+    setGameState(true)
 }
+
+// Add event listeners to buttons
 
 settingsBtn.addEventListener('click', () => {
     modal.show()
+    // Pause game 
+    setGameState(false)
 })
 
-acceptBtn.addEventListener('click', handleAccept)
+document.getElementById('accept-modal-btn')
+    .addEventListener('click', handleAccept)
+
+document.querySelector('#close-modal-btn')
+    .addEventListener('click', () => {
+        // Resume game
+        setGameState(true)
+    })
