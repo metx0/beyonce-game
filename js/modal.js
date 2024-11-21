@@ -1,4 +1,4 @@
-import { setBeyonceSpeed, setGameState, setMusicAllowed,  } from './app.js'
+import { setBeyonceSpeed, setGameState, setMusicAllowed, } from './app.js'
 
 // We will show all the settings in a modal 
 
@@ -62,7 +62,13 @@ function handleAccept() {
     setGameState(true)
 }
 
-// Add event listeners to buttons
+// Add event listeners to buttons and elements
+
+// Resume game when the modal is closed (this is triggered by the 'Close' button and other interactions)
+document.getElementById('modal')
+    .addEventListener('hidden.bs.modal', () => {
+        setGameState(true)
+    })
 
 settingsBtn.addEventListener('click', () => {
     modal.show()
@@ -73,8 +79,8 @@ settingsBtn.addEventListener('click', () => {
 document.getElementById('accept-modal-btn')
     .addEventListener('click', handleAccept)
 
-document.querySelector('#close-modal-btn')
+/* document.querySelector('#close-modal-btn')
     .addEventListener('click', () => {
         // Resume game
         setGameState(true)
-    })
+    }) */
