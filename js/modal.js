@@ -1,4 +1,5 @@
 import { setBeyonceSpeed, setGameState, setMusicAllowed, } from './app.js'
+import { handleFileInput } from './fileChooser.js'
 
 // We will show all the settings in a modal 
 
@@ -56,6 +57,9 @@ function handleAccept() {
     // Allow music or not 
     let allowMusic = document.getElementById('allow-music-switch').checked
     setMusicAllowed(allowMusic)
+
+    // File input
+    handleFileInput()
 
     modal.hide()
     // Resume game 

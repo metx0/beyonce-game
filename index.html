@@ -14,10 +14,14 @@
     </head>
     <body>
         <nav class="navbar navbar-light shadow px-3 py-2 w-100">
-            <div class="container-fluid d-flex justify-content-between align-items-center">
+            <div
+                class="container-fluid d-flex justify-content-between align-items-center"
+            >
                 <h3 class="m-0" id="game-title">Escape from Beyonce</h3>
                 <div class="d-flex align-items-center gap-5">
-                    <p class="mb-0 fw-semibold">Go to settings to pause the game</p>
+                    <p class="mb-0 fw-semibold">
+                        Go to settings to pause the game
+                    </p>
                     <button class="btn btn-primary" id="settings-btn">
                         Settings
                     </button>
@@ -52,7 +56,7 @@
                             aria-label="Cerrar"
                         ></button>
                     </div>
-                    <div class="modal-body d-flex flex-column gap-3">
+                    <div class="modal-body d-flex flex-column gap-4">
                         <!-- Components to change the settings -->
                         <!-- Dark mode -->
                         <div class="form-check form-switch">
@@ -94,6 +98,19 @@
                                 <option value="hard">Hard</option>
                             </select>
                         </div>
+                        <!-- Choose a new image for the player -->
+                        <div>
+                            <label for="file-input" class="form-label"
+                                >Don't like Kanye West? Select a new image for
+                                the player</label
+                            >
+                            <input
+                                class="form-control form-control-sm"
+                                id="file-input"
+                                type="file"
+                                accept=".jpg,.png"
+                            />
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button
@@ -126,5 +143,6 @@
         ></script>
         <script src="js/app.js" type="module"></script>
         <script src="js/modal.js" type="module"></script>
+        <script src="js/fileChooser.js" type="module"></script>
     </body>
 </html>
