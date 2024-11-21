@@ -2,6 +2,7 @@ const gameArea = document.getElementById('game-area')
 // We use the syntax of # to select an element with id 
 const player = document.querySelector('#player')
 const beyonce = document.getElementById('beyonce')
+const audio = document.querySelector('audio')
 
 let playerPosition = {
     x: 0,
@@ -20,6 +21,12 @@ let isPlaying = true
 
 export function setGameState(playing) {
     isPlaying = playing
+
+    if (!isPlaying) {
+        audio.pause()
+    } else {
+        audio.play()
+    }
 }
 
 export function setBeyonceSpeed(newSpeed) {
@@ -59,19 +66,13 @@ function detectCollision() {
     }
 }
 
-// TODO: que el juego inicie solo cuando se presione alguna tecla del cursor
-// Al inicio, cuando no se ha presionado una tecla, el juego está estático
-
 function gameLoop() {
     if (isPlaying) {
-        moveBeyonce() 
+        moveBeyonce()
         updatePosition()
         detectCollision()
     }
 
-    // moveBeyonce() 
-    // updatePosition()
-    // detectCollision()
     requestAnimationFrame(gameLoop)
 }
 
@@ -108,12 +109,22 @@ function movePlayer(event) {
                 playerPosition.x += playerSpeed
             break
     }
-
-    // updatePosition()
 }
 
 window.addEventListener('keydown', movePlayer)
 
+// Wait for user interaction to play the audio and start the game 
+function handleFirstInteraction() {
+    audio.play()
+    // Start game
+    gameLoop()
+
+    // Remove listener, it's no longer necessary
+    window.removeEventListener('keydown', handleFirstInteraction);
+}
+
+window.addEventListener('keydown', handleFirstInteraction)
+
 window.addEventListener('load', () => {
-    // gameLoop()
+    updatePosition()
 })
